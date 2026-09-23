@@ -1,0 +1,166 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1554 1012" width="1554" height="1012">
+  <!-- 03 — BUILD. The architecture behind the work.
+       Chapter one is the gate: mountains, fog, a moon, water. This chapter is
+       the drawing board it was designed on. Same world, opposite register —
+       no landscape, no gate, no moon, no enso. A drafting surface in
+       perspective, the construction geometry left visible, and the eighteen
+       panels set into it like instruments on a bench.
+       The panel quads are the ones the layout already traces, so nothing
+       above this file has to move. Static: rasterised once as an image. -->
+  <defs>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#08080a"/><stop offset="38%" stop-color="#0c0c0f"/>
+      <stop offset="46%" stop-color="#101014"/><stop offset="100%" stop-color="#070709"/>
+    </linearGradient>
+    <radialGradient id="bench" cx="50%" cy="72%" r="62%">
+      <stop offset="0%" stop-color="#fff" stop-opacity=".14"/>
+      <stop offset="55%" stop-color="#fff" stop-opacity=".045"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="railFade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0"/><stop offset="12%" stop-color="#fff" stop-opacity=".85"/>
+      <stop offset="62%" stop-color="#fff" stop-opacity=".5"/><stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <mask id="mRail"><rect x="-200" y="462" width="1954" height="680" fill="url(#railFade)"/></mask>
+    <radialGradient id="blueFade" cx="50%" cy="34%" r="58%">
+      <stop offset="0%" stop-color="#fff" stop-opacity=".5"/><stop offset="70%" stop-color="#fff" stop-opacity=".16"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <mask id="mBlue"><rect width="1554" height="502" fill="url(#blueFade)"/></mask>
+    <pattern id="fine" width="26" height="26" patternUnits="userSpaceOnUse">
+      <path d="M26 0 L0 0 0 26" fill="none" stroke="#fff" stroke-opacity=".5" stroke-width=".5"/></pattern>
+    <pattern id="coarse" width="130" height="130" patternUnits="userSpaceOnUse">
+      <path d="M130 0 L0 0 0 130" fill="none" stroke="#fff" stroke-opacity=".7" stroke-width=".8"/></pattern>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#212227" stop-opacity=".94"/>
+      <stop offset="100%" stop-color="#0d0d11" stop-opacity=".94"/>
+    </linearGradient>
+    <radialGradient id="wash" cx="48%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff" stop-opacity=".055"/>
+      <stop offset="60%" stop-color="#fff" stop-opacity=".022"/>
+      <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="sweep" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#fff" stop-opacity="0"/><stop offset="28%" stop-color="#fff" stop-opacity=".5"/>
+      <stop offset="72%" stop-color="#fff" stop-opacity=".35"/><stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+    </linearGradient>
+    <filter id="ink" x="-30%" y="-30%" width="160%" height="160%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.006 0.02" numOctaves="3" seed="9" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="13" xChannelSelector="R" yChannelSelector="G" result="d"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.03 0.22" numOctaves="3" seed="4" result="g"/>
+      <feColorMatrix in="g" type="matrix" values="0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 1.35 -.5" result="gm"/>
+      <feComposite in="d" in2="gm" operator="out"/>
+    </filter>
+    <filter id="soft"><feGaussianBlur stdDeviation="9"/></filter>
+    <filter id="grain" x="0" y="0" width="100%" height="100%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.82" numOctaves="2" seed="5"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  .14 0 0 0 -.05"/>
+    </filter>
+    <linearGradient id="vig" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#000" stop-opacity=".5"/><stop offset="30%" stop-color="#000" stop-opacity=".08"/>
+      <stop offset="72%" stop-color="#000" stop-opacity="0"/><stop offset="100%" stop-color="#000" stop-opacity=".72"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1554" height="1012" fill="url(#ground)"/>
+
+  <!-- the drawing board: ruled paper, fading out toward the edges -->
+  <g mask="url(#mBlue)">
+    <rect width="1554" height="502" fill="url(#fine)" opacity=".1"/>
+    <rect width="1554" height="502" fill="url(#coarse)" opacity=".15"/>
+  </g>
+
+  <!-- Ink, kept as tone rather than as an object: a wash across the upper
+       field and one dry sweep through it, both fading at their own edges. -->
+  <g filter="url(#ink)">
+    <ellipse cx="740" cy="250" rx="600" ry="215" fill="url(#wash)"/>
+    <path d="M150 444 C540 392 1010 418 1424 350" fill="none" stroke="url(#sweep)"
+          stroke-opacity=".17" stroke-width="44" stroke-linecap="round"/>
+  </g>
+
+  <!-- construction geometry, held behind the head -->
+  <g stroke="#fff" fill="none" stroke-width="1">
+    <circle cx="777" cy="246" r="212" stroke-opacity=".08"/>
+    <circle cx="777" cy="246" r="150" stroke-opacity=".055"/>
+    <path d="M989.0 246.0 L998.0 246.0 M988.2 264.5 L997.2 265.3 M985.8 282.8 L994.6 284.4 M981.8 300.9 L990.5 303.2 M976.2 318.5 L984.7 321.6 M969.1 335.6 L977.3 339.4 M960.6 352.0 L968.4 356.5 M950.7 367.6 L958.0 372.8 M939.4 382.3 L946.3 388.1 M926.9 395.9 L933.3 402.3 M913.3 408.4 L919.1 415.3 M898.6 419.7 L903.8 427.0 M883.0 429.6 L887.5 437.4 M866.6 438.1 L870.4 446.3 M849.5 445.2 L852.6 453.7 M831.9 450.8 L834.2 459.5 M813.8 454.8 L815.4 463.6 M795.5 457.2 L796.3 466.2 M777.0 458.0 L777.0 467.0 M758.5 457.2 L757.7 466.2 M740.2 454.8 L738.6 463.6 M722.1 450.8 L719.8 459.5 M704.5 445.2 L701.4 453.7 M687.4 438.1 L683.6 446.3 M671.0 429.6 L666.5 437.4 M655.4 419.7 L650.2 427.0 M640.7 408.4 L634.9 415.3 M627.1 395.9 L620.7 402.3 M614.6 382.3 L607.7 388.1 M603.3 367.6 L596.0 372.8 M593.4 352.0 L585.6 356.5 M584.9 335.6 L576.7 339.4 M577.8 318.5 L569.3 321.6 M572.2 300.9 L563.5 303.2 M568.2 282.8 L559.4 284.4 M565.8 264.5 L556.8 265.3 M565.0 246.0 L556.0 246.0 M565.8 227.5 L556.8 226.7 M568.2 209.2 L559.4 207.6 M572.2 191.1 L563.5 188.8 M577.8 173.5 L569.3 170.4 M584.9 156.4 L576.7 152.6 M593.4 140.0 L585.6 135.5 M603.3 124.4 L596.0 119.2 M614.6 109.7 L607.7 103.9 M627.1 96.1 L620.7 89.7 M640.7 83.6 L634.9 76.7 M655.4 72.3 L650.2 65.0 M671.0 62.4 L666.5 54.6 M687.4 53.9 L683.6 45.7 M704.5 46.8 L701.4 38.3 M722.1 41.2 L719.8 32.5 M740.2 37.2 L738.6 28.4 M758.5 34.8 L757.7 25.8 M777.0 34.0 L777.0 25.0 M795.5 34.8 L796.3 25.8 M813.8 37.2 L815.4 28.4 M831.9 41.2 L834.2 32.5 M849.5 46.8 L852.6 38.3 M866.6 53.9 L870.4 45.7 M883.0 62.4 L887.5 54.6 M898.6 72.3 L903.8 65.0 M913.3 83.6 L919.1 76.7 M926.9 96.1 L933.3 89.7 M939.4 109.7 L946.3 103.9 M950.7 124.4 L958.0 119.2 M960.6 140.0 L968.4 135.5 M969.1 156.4 L977.3 152.6 M976.2 173.5 L984.7 170.4 M981.8 191.1 L990.5 188.8 M985.8 209.2 L994.6 207.6 M988.2 227.5 L997.2 226.7" stroke-opacity=".085" stroke-width=".8"/>
+    <path d="M777 8 L777 462 M300 246 L1254 246" stroke-opacity=".03"/>
+    <circle cx="777" cy="246" r="4" stroke-opacity=".14"/>
+  </g>
+
+  <!-- left: an axonometric assembly with its dimensions called out -->
+  <g stroke="#fff" fill="none" stroke-width=".9" stroke-opacity=".16">
+    <path d="M168.0 236.0 L243.0 194.0 L183.0 160.4 L108.0 202.4 Z M168.0 236.0 L168.0 302.0 M243.0 194.0 L243.0 260.0 M108.0 202.4 L108.0 268.4 M168.0 302.0 L243.0 260.0 L183.0 226.4 M168.0 302.0 L108.0 268.4"/>
+    <path d="M214.0 154.0 L262.0 127.1 L224.0 105.8 L176.0 132.7 Z M214.0 154.0 L214.0 194.0 M262.0 127.1 L262.0 167.1 M176.0 132.7 L176.0 172.7 M214.0 194.0 L262.0 167.1 L224.0 145.8 M214.0 194.0 L176.0 172.7" stroke-opacity=".1"/>
+    <path d="M168 356 L318 356 M168 351 L168 361 M318 351 L318 361" stroke-opacity=".12"/>
+    <path d="M168 304 L168 350 M318 304 L318 350" stroke-opacity=".07" stroke-dasharray="3 5"/>
+    <path d="M96 126 L96 404 M82 126 L110 126 M82 404 L110 404" stroke-opacity=".09"/>
+  </g>
+
+  <!-- right: a dependency graph, drawn the way a schematic is -->
+  <g stroke="#fff" fill="#fff">
+    <path d="M1276.2 285.0 L1130.1 233.6 M1276.2 285.0 L1344.6 168.1 M1276.2 285.0 L1256.8 253.8 M1276.2 285.0 L1126.2 187.3 M1318.6 322.3 L1305.0 318.6 M1318.6 322.3 L1130.1 233.6 M1318.6 322.3 L1238.4 192.9 M1305.0 318.6 L1130.1 233.6 M1305.0 318.6 L1126.2 187.3 M1130.1 233.6 L1355.1 267.7 M1130.1 233.6 L1344.6 168.1 M1130.1 233.6 L1238.4 192.9 M1238.4 192.9 L1126.2 187.3" fill="none" stroke-width=".8" stroke-opacity=".13"/>
+    <g fill-opacity=".22"><circle cx="1276.2" cy="285.0" r="2.0"/><circle cx="1318.6" cy="322.3" r="3.0"/><circle cx="1305.0" cy="318.6" r="2.7"/><circle cx="1130.1" cy="233.6" r="2.2"/><circle cx="1355.1" cy="267.7" r="1.6"/><circle cx="1344.6" cy="168.1" r="2.4"/><circle cx="1238.4" cy="192.9" r="1.7"/><circle cx="1256.8" cy="253.8" r="2.8"/><circle cx="1126.2" cy="187.3" r="1.6"/></g>
+    <g fill="none" stroke-opacity=".11" stroke-width=".9">
+      <circle cx="1246" cy="240" r="150"/>
+      <path d="M1396.0 240.0 L1403.0 240.0 M1393.7 266.0 L1400.6 267.3 M1387.0 291.3 L1393.5 293.7 M1375.9 315.0 L1382.0 318.5 M1360.9 336.4 L1366.3 340.9 M1342.4 354.9 L1346.9 360.3 M1321.0 369.9 L1324.5 376.0 M1297.3 381.0 L1299.7 387.5 M1272.0 387.7 L1273.3 394.6 M1246.0 390.0 L1246.0 397.0 M1220.0 387.7 L1218.7 394.6 M1194.7 381.0 L1192.3 387.5 M1171.0 369.9 L1167.5 376.0 M1149.6 354.9 L1145.1 360.3 M1131.1 336.4 L1125.7 340.9 M1116.1 315.0 L1110.0 318.5 M1105.0 291.3 L1098.5 293.7 M1098.3 266.0 L1091.4 267.3 M1096.0 240.0 L1089.0 240.0 M1098.3 214.0 L1091.4 212.7 M1105.0 188.7 L1098.5 186.3 M1116.1 165.0 L1110.0 161.5 M1131.1 143.6 L1125.7 139.1 M1149.6 125.1 L1145.1 119.7 M1171.0 110.1 L1167.5 104.0 M1194.7 99.0 L1192.3 92.5 M1220.0 92.3 L1218.7 85.4 M1246.0 90.0 L1246.0 83.0 M1272.0 92.3 L1273.3 85.4 M1297.3 99.0 L1299.7 92.5 M1321.0 110.1 L1324.5 104.0 M1342.4 125.1 L1346.9 119.7 M1360.9 143.6 L1366.3 139.1 M1375.9 165.0 L1382.0 161.5 M1387.0 188.7 L1393.5 186.3 M1393.7 214.0 L1400.6 212.7"/>
+    </g>
+  </g>
+
+  <!-- registration marks, the drawing's own furniture -->
+  <g stroke="#fff" stroke-opacity=".16" stroke-width="1" fill="none">
+    <path d="M44 44 L44 74 M44 44 L74 44"/><path d="M1510 44 L1510 74 M1510 44 L1480 44"/>
+    <path d="M44 968 L44 938 M44 968 L74 968"/><path d="M1510 968 L1510 938 M1510 968 L1480 968"/>
+  </g>
+
+  <!-- the surface the panels are set into -->
+  <rect x="0" y="462" width="1554" height="550" fill="url(#bench)"/>
+  <g mask="url(#mRail)" fill="none" stroke="#fff">
+    <path d="M307.5 462.0 L-43.2 1132.0 M441.9 462.0 L191.5 1132.0 M452.6 462.0 L210.2 1132.0 M605.2 462.0 L476.9 1132.0 M617.4 462.0 L498.3 1132.0 M770.1 462.0 L765.0 1132.0 M783.9 462.0 L789.0 1132.0 M936.6 462.0 L1055.7 1132.0 M948.8 462.0 L1077.1 1132.0 M1101.4 462.0 L1343.8 1132.0 M1112.1 462.0 L1362.5 1132.0 M1246.5 462.0 L1597.2 1132.0 M-81.2 462.0 L-722.1 1132.0 M29.8 462.0 L-528.2 1132.0 M133.9 462.0 L-346.4 1132.0 M1563.0 462.0 L2150.1 1132.0 M1667.1 462.0 L2331.9 1132.0 M1771.1 462.0 L2513.7 1132.0" stroke-opacity=".24" stroke-width=".9"/>
+    <path d="M-200 468.0 L1754 468.0 M-200 474.2 L1754 474.2 M-200 481.8 L1754 481.8 M-200 491.2 L1754 491.2 M-200 502.9 L1754 502.9 M-200 517.2 L1754 517.2 M-200 535.0 L1754 535.0 M-200 556.9 L1754 556.9 M-200 583.9 L1754 583.9 M-200 617.3 L1754 617.3 M-200 658.6 L1754 658.6 M-200 709.6 L1754 709.6 M-200 772.5 L1754 772.5 M-200 850.3 L1754 850.3 M-200 946.3 L1754 946.3 M-200 1064.8 L1754 1064.8" stroke-opacity=".13" stroke-width=".8"/>
+  </g>
+  <path d="M0 462 L1554 462" stroke="#fff" stroke-opacity=".26" stroke-width="1"/>
+  <path d="M250 462 L1304 462" stroke="#fff" stroke-opacity=".42" stroke-width="1.6" filter="url(#soft)"/>
+
+  <!-- the eighteen panels -->
+  <g>
+    <path d="M267.8 532.0 Q272.0 524.0 281.0 524.0 L419.0 524.0 Q428.0 524.0 426.1 532.8 L411.9 599.2 Q410.0 608.0 401.0 608.0 L237.0 608.0 Q228.0 608.0 232.2 600.0 Z" fill="url(#panel)" stroke="#fff" stroke-opacity=".3" stroke-width="1"/>
+    <path d="M279.0 525.5 L421.0 525.5" stroke="#fff" stroke-opacity=".3" stroke-width="1" fill="none"/>
+    <path d="M442.0 532.5 Q445.0 524.0 454.0 524.0 L588.0 524.0 Q597.0 524.0 596.5 533.0 L592.5 599.0 Q592.0 608.0 583.0 608.0 L424.0 608.0 Q415.0 608.0 418.0 599.5 Z" fill="url(#panel)" stroke="#fff" stroke-opacity=".3" stroke-width="1"/>
+    <path d="M452.0 525.5 L590.0 525.5" stroke="#fff" stroke-opacity=".3" stroke-width="1" fill="none"/>
+    <path d="M613.4 532.9 Q615.0 524.0 624.0 524.0 L759.0 524.0 Q768.0 524.0 768.0 533.0 L768.0 599.0 Q768.0 608.0 759.0 608.0 L609.0 608.0 Q600.0 608.0 601.6 599.1 Z" fill="url(#panel)" stroke="#fff" stroke-opacity=".3" stroke-width="1"/>
+    <path d="M622.0 525.5 L761.0 525.5" stroke="#fff" stroke-opacity=".3" stroke-width="1" fill="none"/>
+    <path d="M786.0 533.0 Q786.0 524.0 795.0 524.0 L930.0 524.0 Q939.0 524.0 940.6 532.9 L952.4 599.1 Q954.0 608.0 945.0 608.0 L795.0 608.0 Q786.0 608.0 786.0 599.0 Z" fill="url(#panel)" stroke="#fff" stroke-opacity=".3" stroke-width="1"/>
+    <path d="M793.0 525.5 L932.0 525.5" stroke="#fff" stroke-opacity=".3" stroke-width="1" fill="none"/>
+    <path d="M957.5 533.0 Q957.0 524.0 966.0 524.0 L1100.0 524.0 Q1109.0 524.0 1112.0 532.5 L1136.0 599.5 Q1139.0 608.0 1130.0 608.0 L971.0 608.0 Q962.0 608.0 961.5 599.0 Z" fill="url(#panel)" stroke="#fff" stroke-opacity=".3" stroke-width="1"/>
+    <path d="M964.0 525.5 L1102.0 525.5" stroke="#fff" stroke-opacity=".3" stroke-width="1" fill="none"/>
+    <path d="M1127.9 532.8 Q1126.0 524.0 1135.0 524.0 L1273.0 524.0 Q1282.0 524.0 1286.2 532.0 L1321.8 600.0 Q1326.0 608.0 1317.0 608.0 L1153.0 608.0 Q1144.0 608.0 1142.1 599.2 Z" fill="url(#panel)" stroke="#fff" stroke-opacity=".3" stroke-width="1"/>
+    <path d="M1133.0 525.5 L1275.0 525.5" stroke="#fff" stroke-opacity=".3" stroke-width="1" fill="none"/>
+    <path d="M213.6 629.9 Q218.0 622.0 227.0 622.0 L377.0 622.0 Q386.0 622.0 383.9 630.8 L364.1 713.2 Q362.0 722.0 353.0 722.0 L171.0 722.0 Q162.0 722.0 166.4 714.1 Z" fill="url(#panel)" stroke="#fff" stroke-opacity=".3" stroke-width="1"/>
+    <path d="M225.0 623.5 L379.0 623.5" stroke="#fff" stroke-opacity=".3" stroke-width="1" fill="none"/>
+    <path d="M399.3 630.6 Q402.0 622.0 411.0 622.0 L569.0 622.0 Q578.0 622.0 576.8 630.9 L566.2 713.1 Q565.0 722.0 556.0 722.0 L379.0 722.0 Q370.0 722.0 372.7 713.4 Z" fill="url(#panel)" stroke="#fff" stroke-opacity=".3" stroke-width="1"/>
+    <path d="M409.0 623.5 L571.0 623.5" stroke="#fff" stroke-opacity=".3" stroke-width="1" fill="none"/>
+    <path d="M593.5 630.9 Q595.0 622.0 604.0 622.0 L759.0 622.0 Q768.0 622.0 768.0 631.0 L768.0 713.0 Q768.0 722.0 759.0 722.0 L587.0 722.0 Q578.0 722.0 579.5 713.1 Z" fill="url(#panel)" stroke="#fff" stroke-opacity=".3" stroke-width="1"/>
+    <path d="M602.0 623.5 L761.0 623.5" stroke="#fff" stroke-opacity=".3" stroke-width="1" fill="none"/>
+    <path d="M786.0 631.0 Q786.0 622.0 795.0 622.0 L950.0 622.0 Q959.0 622.0 960.5 630.9 L974.5 713.1 Q976.0 722.0 967.0 722.0 L795.0 722.0 Q786.0 722.0 786.0 713.0 Z" fill="url(#panel)" stroke="#fff" stroke-opacity=".3" stroke-width="1"/>
+    <path d="M793.0 623.5 L952.0 623.5" stroke="#fff" stroke-opacity=".3" stroke-width="1" fill="none"/>
+    <path d="M977.2 630.9 Q976.0 622.0 985.0 622.0 L1143.0 622.0 Q1152.0 622.0 1154.7 630.6 L1181.3 713.4 Q1184.0 722.0 1175.0 722.0 L998.0 722.0 Q989.0 722.0 987.8 713.1 Z" fill="url(#panel)" stroke="#fff" stroke-opacity=".3" stroke-width="1"/>
+    <path d="M983.0 623.5 L1145.0 623.5" stroke="#fff" stroke-opacity=".3" stroke-width="1" fill="none"/>
+    <path d="M1170.1 630.8 Q1168.0 622.0 1177.0 622.0 L1327.0 622.0 Q1336.0 622.0 1340.4 629.9 L1387.6 714.1 Q1392.0 722.0 1383.0 722.0 L1201.0 722.0 Q1192.0 722.0 1189.9 713.2 Z" fill="url(#panel)" stroke="#fff" stroke-opacity=".3" stroke-width="1"/>
+    <path d="M1175.0 623.5 L1329.0 623.5" stroke="#fff" stroke-opacity=".3" stroke-width="1" fill="none"/>
+    <path d="M157.8 748.0 Q162.0 740.0 171.0 740.0 L329.0 740.0 Q338.0 740.0 335.4 748.6 L304.6 849.4 Q302.0 858.0 293.0 858.0 L109.0 858.0 Q100.0 858.0 104.2 850.0 Z" fill="url(#panel)" stroke="#fff" stroke-opacity=".3" stroke-width="1"/>
+    <path d="M169.0 741.5 L331.0 741.5" stroke="#fff" stroke-opacity=".3" stroke-width="1" fill="none"/>
+    <path d="M349.8 748.7 Q352.0 740.0 361.0 740.0 L543.0 740.0 Q552.0 740.0 550.9 748.9 L539.1 849.1 Q538.0 858.0 529.0 858.0 L331.0 858.0 Q322.0 858.0 324.2 849.3 Z" fill="url(#panel)" stroke="#fff" stroke-opacity=".3" stroke-width="1"/>
+    <path d="M359.0 741.5 L545.0 741.5" stroke="#fff" stroke-opacity=".3" stroke-width="1" fill="none"/>
+    <path d="M567.0 748.9 Q568.0 740.0 577.0 740.0 L759.0 740.0 Q768.0 740.0 768.0 749.0 L768.0 849.0 Q768.0 858.0 759.0 858.0 L564.0 858.0 Q555.0 858.0 556.0 849.1 Z" fill="url(#panel)" stroke="#fff" stroke-opacity=".3" stroke-width="1"/>
+    <path d="M575.0 741.5 L761.0 741.5" stroke="#fff" stroke-opacity=".3" stroke-width="1" fill="none"/>
+    <path d="M786.0 749.0 Q786.0 740.0 795.0 740.0 L977.0 740.0 Q986.0 740.0 987.0 748.9 L998.0 849.1 Q999.0 858.0 990.0 858.0 L795.0 858.0 Q786.0 858.0 786.0 849.0 Z" fill="url(#panel)" stroke="#fff" stroke-opacity=".3" stroke-width="1"/>
+    <path d="M793.0 741.5 L979.0 741.5" stroke="#fff" stroke-opacity=".3" stroke-width="1" fill="none"/>
+    <path d="M1003.1 748.9 Q1002.0 740.0 1011.0 740.0 L1193.0 740.0 Q1202.0 740.0 1204.2 748.7 L1229.8 849.3 Q1232.0 858.0 1223.0 858.0 L1025.0 858.0 Q1016.0 858.0 1014.9 849.1 Z" fill="url(#panel)" stroke="#fff" stroke-opacity=".3" stroke-width="1"/>
+    <path d="M1009.0 741.5 L1195.0 741.5" stroke="#fff" stroke-opacity=".3" stroke-width="1" fill="none"/>
+    <path d="M1218.6 748.6 Q1216.0 740.0 1225.0 740.0 L1383.0 740.0 Q1392.0 740.0 1396.2 748.0 L1449.8 850.0 Q1454.0 858.0 1445.0 858.0 L1261.0 858.0 Q1252.0 858.0 1249.4 849.4 Z" fill="url(#panel)" stroke="#fff" stroke-opacity=".3" stroke-width="1"/>
+    <path d="M1223.0 741.5 L1385.0 741.5" stroke="#fff" stroke-opacity=".3" stroke-width="1" fill="none"/>
+  </g>
+
+  <rect width="1554" height="1012" fill="url(#vig)"/>
+  <rect width="1554" height="1012" filter="url(#grain)" opacity=".5"/>
+</svg>

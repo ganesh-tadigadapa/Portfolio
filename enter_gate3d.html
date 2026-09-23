@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Ganesh Tadigadapa</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;800;900&family=Noto+Serif+JP:wght@300;500&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#0a0a0b;--fg:#f2f2f0;--muted:#6a6a70;--faint:#141416;--line:#2a2a34}
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{background:var(--bg);color:var(--fg);font-family:"Inter",Arial,sans-serif;overflow-x:hidden;cursor:none}
+  .cursor{position:fixed;width:34px;height:34px;border:1px solid rgba(242,242,240,.55);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:999;transition:.2s}
+  .cursor.big{width:64px;height:64px;background:rgba(242,242,240,.05)}
+  .cdot{position:fixed;width:4px;height:4px;background:var(--fg);border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:999}
+  .tag{position:fixed;font-size:10px;letter-spacing:5px;color:var(--muted);text-transform:uppercase;z-index:20}
+  .tl{top:26px;left:30px}.tr{top:26px;right:30px}.bl{bottom:26px;left:30px}.br{bottom:26px;right:30px}
+
+  .enter{position:fixed;inset:0;z-index:60;background:var(--bg);perspective:1200px;overflow:hidden;transition:opacity .8s,visibility .8s}
+  .enter.gone{opacity:0;visibility:hidden;pointer-events:none}
+  .khero{position:absolute;left:50%;top:44%;transform:translate(-50%,-50%);font-family:"Noto Serif JP",serif;font-size:60vmin;color:var(--faint);z-index:0;transition:opacity .6s}
+
+  /* two 3D doors that swing open on scroll */
+  .doors{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;transform-style:preserve-3d;z-index:2}
+  .door{width:26vmin;height:64vmin;background:linear-gradient(180deg,#141418,#0d0d10);border:1px solid var(--line);
+    position:relative;transition:transform .12s linear}
+  .door.left{transform-origin:left center;transform:rotateY(0deg)}
+  .door.right{transform-origin:right center;transform:rotateY(0deg)}
+  .door .kj{position:absolute;top:50%;transform:translateY(-50%);font-family:"Noto Serif JP",serif;font-size:11vmin;color:var(--fg)}
+  .door.left .kj{right:12%}.door.right .kj{left:12%}
+  .seam{position:absolute;left:50%;top:0;transform:translateX(-50%);width:1px;height:100%;background:var(--line);z-index:3;transition:opacity .5s}
+
+  /* content glimpsed behind the doors */
+  .behind{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;z-index:1}
+  .behind .g{font-family:"Noto Serif JP",serif;font-size:30vmin;color:#1a1a20}
+
+  .brand{position:absolute;bottom:12%;left:0;right:0;text-align:center;z-index:5;transition:opacity .5s}
+  .brand h1{font-weight:800;font-size:clamp(18px,3vw,30px);letter-spacing:6px}
+  .brand .sub{margin-top:12px;font-size:10px;letter-spacing:8px;color:var(--muted);text-transform:uppercase}
+  .prompt{position:absolute;bottom:6%;left:0;right:0;text-align:center;z-index:5;font-size:11px;letter-spacing:8px;color:var(--muted);text-transform:uppercase}
+  .flash{position:fixed;inset:0;z-index:70;background:#fff;opacity:0;pointer-events:none;transition:.3s}.flash.on{opacity:1}
+
+  #site{opacity:0;transform:scale(1.04);transition:opacity 1s ease .1s,transform 1s ease .1s}#site.show{opacity:1;transform:scale(1)}
+  .nav{position:fixed;top:0;left:0;right:0;z-index:40;display:flex;justify-content:space-between;align-items:center;padding:22px 34px;mix-blend-mode:difference}
+  .nav .logo{font-weight:800;letter-spacing:2px;font-size:14px}.nav a{color:var(--fg);text-decoration:none;margin-left:28px;font-size:11px;letter-spacing:2px;text-transform:uppercase;opacity:.7}.nav a:hover{opacity:1}
+  section{max-width:1200px;margin:0 auto;padding:120px 34px}.hero{min-height:92vh;display:flex;flex-direction:column;justify-content:center}
+  .hero .ey{font-size:11px;letter-spacing:8px;text-transform:uppercase;color:var(--muted);margin-bottom:20px}.hero h2{font-weight:200;font-size:clamp(44px,9vw,120px);line-height:.95}.hero h2 b{font-weight:900}
+  .snum{font-size:11px;letter-spacing:6px;color:var(--muted);text-transform:uppercase;margin-bottom:18px}.st{font-weight:200;font-size:clamp(34px,6vw,64px)}.st b{font-weight:900}
+  .ph{margin-top:40px;border:1px solid var(--line);padding:70px;text-align:center;color:#3a3a42;letter-spacing:2px;text-transform:uppercase;font-size:11px}
+</style></head><body>
+  <div class="cursor" id="cur"></div><div class="cdot" id="curd"></div>
+  <div class="enter" id="enter">
+    <span class="tag tl">起動 / opening</span><span class="tag tr">the gate</span>
+    <span class="tag bl">IND · 12.97°N</span><span class="tag br">2026</span>
+    <div class="behind"><div class="g">道</div></div>
+    <div class="doors" id="doors">
+      <div class="door left" id="dl"><div class="kj">入</div></div>
+      <div class="door right" id="dr"><div class="kj">口</div></div>
+    </div>
+    <div class="seam" id="seam"></div>
+    <div class="brand" id="brand"><h1>GANESH TADIGADAPA</h1><div class="sub">Developer · Designer · Creator</div></div>
+    <div class="prompt">scroll to open the gate</div>
+  </div>
+  <div class="flash" id="flash"></div>
+  <div id="sz" style="height:220vh"></div>
+  <main id="site">
+    <nav class="nav"><div class="logo">GT</div><div><a href="#s">Stack</a><a href="#w">Work</a><a href="#l">Lens</a><a href="#c">Contact</a></div></nav>
+    <section class="hero"><div class="ey">Welcome</div><h2>GANESH<br><b>TADIGADAPA</b></h2></section>
+    <section id="s"><div class="snum">01 — Toolkit</div><div class="st">Tech <b>Stack</b></div><div class="ph">[ tech-stack grid ]</div></section>
+    <section id="w"><div class="snum">02 — Work</div><div class="st">Selected <b>Projects</b></div><div class="ph">[ projects ]</div></section>
+    <section id="l"><div class="snum">03 — Lens</div><div class="st">Through My <b>Lens</b></div><div class="ph">[ gallery ]</div></section>
+    <section id="c"><div class="snum">04 — Contact</div><div class="st">Let's <b>Connect</b></div><div class="ph">[ links ]</div></section>
+  </main>
+<script>
+  const cur=document.getElementById('cur'),curd=document.getElementById('curd');
+  addEventListener('mousemove',e=>{cur.style.left=curd.style.left=e.clientX+'px';cur.style.top=curd.style.top=e.clientY+'px';});
+  const enter=document.getElementById('enter'),dl=document.getElementById('dl'),dr=document.getElementById('dr'),seam=document.getElementById('seam'),brand=document.getElementById('brand'),flash=document.getElementById('flash'),site=document.getElementById('site');
+  let done=false;
+  function open(p){
+    dl.style.transform=`rotateY(${p*105}deg)`;      // doors swing open
+    dr.style.transform=`rotateY(${-p*105}deg)`;
+    seam.style.opacity=String(1-p*2);
+    brand.style.opacity=String(1-p*1.6);
+    enter.style.opacity=String(1-p*0.5);
+  }
+  function onS(){if(done)return;const z=document.getElementById('sz').offsetHeight-innerHeight;const p=Math.min(1,Math.max(0,scrollY/(z*0.65)));open(p);if(p>=1)go();}
+  addEventListener('scroll',onS,{passive:true});
+  function go(){if(done)return;done=true;flash.classList.add('on');setTimeout(()=>{enter.classList.add('gone');site.classList.add('show');scrollTo(0,0);document.getElementById('sz').style.display='none';site.querySelectorAll('a').forEach(a=>{a.onmouseenter=()=>cur.classList.add('big');a.onmouseleave=()=>cur.classList.remove('big');});setTimeout(()=>flash.classList.remove('on'),120);},300);}
+  enter.addEventListener('click',()=>{let p=0;const a=setInterval(()=>{p+=0.035;open(p);if(p>=1){clearInterval(a);go();}},16);});
+</script></body></html>

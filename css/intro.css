@@ -1,0 +1,115 @@
+/* Act one and two: the loading intro, then the gate that is scrubbed
+   open to reveal the site. */
+
+  /* ================= GATE (act two) ================= */
+  /* sits behind the intro, so the intro's upward wipe uncovers it already lit.
+     the gate stays dark in both themes — it is a cinematic moment, and the
+     photograph is monochrome night. */
+  #gate{position:fixed;inset:0;z-index:55;overflow:hidden;
+    --gbg:#0a0a0c;background:var(--gbg);
+    opacity:0;visibility:hidden;
+    transition:opacity .9s var(--ease), visibility .9s var(--ease)}
+  #gate.live{opacity:1;visibility:visible}
+  /* the hand-off: a long dissolve, while the photograph keeps travelling
+     underneath it, so the motion never stops dead */
+  #gate.opened{opacity:0;visibility:hidden;pointer-events:none;
+    transition:opacity 1.5s cubic-bezier(.33,0,.2,1), visibility 1.5s linear}
+
+  .scene{position:absolute;inset:0;overflow:hidden}
+  .scene picture,.scene img{position:absolute;left:50%;top:50%;
+    width:100%;height:100%;object-fit:cover;
+    transform:translate(-50%,-50%) scale(1);
+    transform-origin:50% 56%;          /* the gate's mouth, not the frame centre */
+    will-change:transform,opacity,filter}
+  /* blurred placeholder holds the frame until the photograph decodes */
+  .scene .lqip{filter:blur(18px) saturate(.9);transform:translate(-50%,-50%) scale(1.06)}
+  .scene .full{opacity:0;transition:opacity 1.2s var(--ease)}
+  .scene .full.awake{opacity:1}
+
+  /* bleed the photograph's edges into the background colour */
+  .scene::before{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+    background:linear-gradient(to bottom,var(--gbg) 0%,transparent 22%,
+               transparent 62%,var(--gbg) 100%)}
+  .scene::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+    background:radial-gradient(130% 100% at 50% 50%,transparent 40%,rgba(10,10,12,.92) 100%)}
+
+  /* a custom property is not animatable until it is registered with a type —
+     without this the tunnel would jump rather than open at the hand-off */
+  @property --hole{syntax:'<percentage>';inherits:false;initial-value:72%}
+
+  /* tunnel: a dark ring that closes in around the opening as you dive, so the
+     frame narrows to the light between the pillars */
+  .gvig{position:absolute;inset:0;z-index:3;pointer-events:none;
+    background:radial-gradient(circle at 50% 56%,
+               transparent var(--hole,72%), rgba(5,5,8,.97) 100%)}
+
+  /* fog drifting past the camera, strongest through the middle of the dive */
+  .gfog{position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0;
+    background:radial-gradient(62% 42% at 50% 60%, rgba(158,168,192,.13), transparent 72%);
+    will-change:opacity,transform}
+
+  /* the light under the torii, which swells as you approach */
+  .portal{position:absolute;left:50%;top:56%;z-index:3;pointer-events:none;
+    width:14vmin;height:26vmin;border-radius:50%;
+    transform:translate(-50%,-50%) scale(1);
+    background:radial-gradient(closest-side,rgba(255,255,255,.34),transparent 72%);
+    opacity:.45;will-change:transform,opacity}
+
+  /* while the gate is up the spacer supplies the scroll; the page is out of
+     the document entirely, so no section reveals fire behind it */
+  #spacer{height:200vh}
+  #page{display:none}
+  body.entered #page{display:block}
+  body.entered #spacer{display:none}
+
+  /* ================= INTRO ================= */
+  #intro{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;background:var(--bg);
+    clip-path:inset(0 0 0 0);
+    transition:clip-path 1.15s var(--ease-io)}
+  #intro.out{clip-path:inset(0 0 100% 0)}          /* wipes upward, not a crossfade */
+  #intro .inner{display:flex;flex-direction:column;align-items:center;
+    transition:opacity .55s var(--ease), transform .8s var(--ease)}
+  #intro.out .inner{opacity:0;transform:translateY(-26px)}
+
+  /* corner tags */
+  .tag{position:fixed;font-size:9px;letter-spacing:4px;color:var(--dim);
+    text-transform:uppercase;z-index:61;
+    opacity:0;animation:tagIn 1s var(--ease) .25s forwards}
+  @keyframes tagIn{to{opacity:1}}
+  .tag.tl{top:26px;left:30px}
+  .tag.tr{top:26px;right:30px}
+  .tag.bl{bottom:26px;left:30px}
+  .tag.br{bottom:26px;right:30px}
+  #intro.out .tag{opacity:0;transition:opacity .35s ease}
+
+  /* rotating kanji, animated per character */
+  .word{height:104px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end}
+  .kanji{font-family:"Noto Serif JP",serif;font-weight:200;
+    font-size:clamp(32px,5.6vw,50px);letter-spacing:10px;text-indent:10px;
+    display:flex;overflow:hidden;line-height:1.25}
+  .kanji span{display:inline-block;transform:translateY(105%);opacity:0;
+    transition:transform .7s var(--ease), opacity .7s var(--ease)}
+  .kanji.show span{transform:translateY(0);opacity:1}
+  .kanji.out span{transform:translateY(-105%);opacity:0;transition-duration:.45s}
+  .meaning{margin-top:14px;font-size:9px;letter-spacing:6px;text-transform:uppercase;
+    color:var(--muted);opacity:0;transition:opacity .5s var(--ease) .12s}
+  .meaning.show{opacity:1}
+
+  /* counter */
+  .counter{display:flex;align-items:flex-start;justify-content:center;line-height:.85;margin:18px 0 0}
+  #num{font-weight:800;font-size:clamp(88px,19vw,184px);letter-spacing:-7px;
+    font-variant-numeric:tabular-nums;font-feature-settings:"tnum" 1}
+  .pct{font-weight:200;font-size:clamp(18px,2.6vw,26px);color:var(--muted);margin:10px 0 0 12px}
+
+  /* progress bar */
+  .barwrap{width:min(50vw,400px);margin-top:36px}
+  .bar{position:relative;width:100%;height:1px;background:var(--track);overflow:hidden}
+  .fill{position:absolute;left:0;top:0;height:100%;width:0%;
+    background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--fg) 45%,transparent) 45%,var(--fg))}
+  .bar::after{content:"";position:absolute;inset:0;
+    background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--fg) 50%,transparent),transparent);
+    transform:translateX(-100%);animation:sheen 2.4s var(--ease-io) infinite}
+  @keyframes sheen{0%{transform:translateX(-100%)}60%,100%{transform:translateX(100%)}}
+  .label{margin-top:22px;text-align:center;font-size:8px;letter-spacing:10px;
+    text-indent:10px;text-transform:uppercase;color:var(--dim)}

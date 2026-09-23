@@ -1,0 +1,109 @@
+/* Viewport rules, kept together and loaded last so they always win.
+   Ordered exactly as they appeared in the original cascade. The global
+   reduced-motion block closes the file, and so the stylesheet. */
+
+  @media (max-width:900px){
+    .rail,.quote,.tick{display:none}
+    .dial{bottom:14%;right:18px;transform:scale(.86)}
+    .nav .links{gap:15px}
+    .badge{top:84px}
+    h1{font-size:clamp(32px,9.6vw,84px)}
+  }
+  @media (max-width:620px){
+    .nav .hair,.base .end span{display:none}
+    .base{bottom:22px}
+    .planet{top:-14vmin;right:-24vmin}
+    h1,.namewrap{align-items:center}
+    h1 .n2,.sig{margin-left:0}
+    .sig{width:min(84vw,420px)}
+    .role{letter-spacing:4px}
+  }
+
+  @media (max-width:640px){
+    .chapmark .name{display:none}
+  }
+
+  @media (max-width:1400px){
+    /* the painting's own furniture crowds once it is this small */
+    .board .pg,.board .pline{display:none}
+  }
+  /* Below this the painted tile labels fall under about eight pixels, and the
+     artboard's absolute placement stops holding. So the picture becomes a
+     backdrop, the head leaves the artboard's coordinate system and simply
+     flows, and the eighteen technologies are listed as an ordinary grid. */
+  @media (max-width:860px){
+    .board{aspect-ratio:auto;border-radius:10px;
+      padding:clamp(30px,9vw,52px) 18px clamp(34px,10vw,58px);
+      display:flex;flex-direction:column;align-items:center;text-align:center;
+      gap:clamp(10px,2.6vw,16px)}
+    .board .plate{object-position:50% 34%;opacity:.55}
+    .board .bi{position:static;white-space:normal;transform:none}
+    .board .quads,.board .tmark,.board .tspark,
+    .board .jp,.board .col,.board .rule,.board .foot,.board .tdot,
+    .board .idx,.board .dash1,.board .lbl,.board .pg,.board .pline{display:none}
+
+    .board .ji{font-size:clamp(22px,6.4vw,30px);line-height:1.2}
+    .board .kick{font-size:9px;letter-spacing:.34em;padding-left:.34em;
+      color:rgba(240,240,240,.82)}
+    .board .title{font-size:clamp(42px,13.6vw,70px);line-height:1.02}
+    .board .sub{font-size:12px;line-height:1.7}
+    .tgrid{display:grid}
+  }
+  @media (max-width:420px){
+    .tgrid{gap:10px}
+    .tgrid .tile span{font-size:10px}
+  }
+
+  @media (max-width:900px){
+    /* the split stacks: the interface sits under what it illustrates */
+    .prow{grid-template-columns:1fr;min-height:0}
+    .prow .pview{order:2;padding:0 14px 14px;height:auto}
+    .prow .pframe{height:clamp(200px,48vw,280px);border-radius:0 0 10px 10px}
+    .prow .pinfo{order:1}
+    .prow .plive{opacity:1;transform:none}
+    .prow .pchrome u{opacity:1;transform:none}
+  }
+  @media (max-width:560px){
+    .plist{gap:16px}
+    .prow{border-radius:16px}
+    .prow .psub{font-size:12px}
+    .pfoot{flex-direction:column;align-items:flex-start;gap:12px}
+  }
+
+  @media (max-width:820px){
+    .lenshead{flex-direction:column;gap:16px}
+    .lenshead .note{text-align:left}
+  }
+  @media (max-width:560px){
+    .shot{height:clamp(178px,44vw,216px)}
+    .lstrip{scroll-snap-type:x mandatory}
+    .lensnav{display:none}
+    /* touch has no hover, so the caption and its shade simply stay */
+    .shot .cap{opacity:1;transform:none}
+    .shot::after{opacity:1}
+  }
+
+
+  @media (max-width:760px){
+    .connect{flex-direction:column;align-items:flex-start;gap:26px}
+    .connect .sign{text-align:left}
+  }
+
+
+  @media (max-width:600px){
+    .tag{font-size:8px;letter-spacing:3px}
+    .tag.tl,.tag.bl{left:18px}.tag.tr,.tag.br{right:18px}
+    .tag.tl,.tag.tr{top:18px}.tag.bl,.tag.br{bottom:18px}
+    .barwrap{width:70vw}
+    section.band{padding:80px 18px 100px}
+    #work{padding-top:40px}
+    footer{justify-content:center;text-align:center}
+  }
+
+  /* respect reduced motion: keep the composition, drop the movement */
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;
+      transition-duration:.01ms!important}
+    .grain{animation:none}
+    .cur{display:none}
+  }

@@ -1,0 +1,156 @@
+/* 03 — BUILD. The architecture behind the work.
+ *
+ * Chapter one is the gate — mountains, fog, a moon. This chapter is the
+ * drawing board it was designed on: a drafting surface in perspective with its
+ * construction geometry left visible, and no landscape anywhere in it.
+ *
+ * The eighteen technology panels are drawn into that surface in perspective.
+ * Nothing here can reflow without breaking their alignment, so the section is
+ * an artboard: a fixed 1554x1012 frame in which
+ * every element is placed as a percentage, sized in container-query units, and
+ * scaled as one piece. Below the width where the painted labels stop being
+ * legible, responsive.css hides the artboard's tile layer and shows an
+ * ordinary grid of the same eighteen technologies instead.
+ */
+
+  /* the one accent on the whole site, used sparingly elsewhere */
+  :root{--accent:#3b82f6}
+  :root[data-theme="light"]{--accent:#2563eb}
+
+  #stack{overflow:hidden;isolation:isolate}
+  #stack > .wrap{max-width:1554px;margin-inline:auto}
+
+  /* the artboard ----------------------------------------------------------- */
+  .board{position:relative;width:100%;aspect-ratio:1554/1012;
+    container-type:inline-size;
+    background:#000;border-radius:2px;overflow:hidden;
+    color:#e8e8e8;font-weight:400}
+  .plate{position:absolute;inset:0;width:100%;height:100%;display:block;
+    object-fit:cover;user-select:none;-webkit-user-drag:none}
+  /* The plate is a night drawing and the type on it is white, so on paper it
+     stays exactly as dark as it is: the chapter reads as a dark panel set into
+     a light page, rather than washing out to nothing. */
+  :root[data-theme="light"] .board{box-shadow:0 30px 80px -50px rgba(0,0,0,.55)}
+
+  .bi{position:absolute;white-space:nowrap;margin:0}
+
+  /* the editorial furniture, all of it set in the site's tracking */
+  .board .col,.board .idx,.board .dash1,.board .lbl,.board .kick,.board .foot,
+  .board .pg{
+    font-size:.676cqw;letter-spacing:.44em;text-transform:uppercase;
+    color:rgba(232,232,232,.78);line-height:1.8}
+  .board .dim{color:rgba(232,232,232,.55)}
+  .board .rule{height:1px;background:rgba(255,255,255,.3);display:block}
+
+  .board .idx  {left:2.96%;top:4.64%}
+  .board .dash1{left:5.66%;top:4.64%}
+  .board .lbl  {left:7.92%;top:4.64%}
+  .board .r1   {left:17.05%;top:5.34%;width:8.43%;background:rgba(255,255,255,.2)}
+
+  .board .tl{left:2.96%;top:10.47%}
+  .board .r2{left:2.96%;top:19.37%;width:1.8%}
+  .board .tr{right:1.99%;top:12.35%;text-align:right}
+  .board .r3{left:90.41%;top:19.37%;width:1.74%}
+
+  /* the head ---------------------------------------------------------------- */
+  .board .ji{left:50%;top:7.9%;transform:translateX(-50%);
+    font-family:"Noto Serif JP",serif;font-weight:300;
+    font-size:2.188cqw;line-height:1.18;text-align:center;color:#f0f0f0}
+  .board .kick{left:50%;top:17.89%;transform:translateX(-50%);
+    letter-spacing:.46em;padding-left:.46em;color:rgba(240,240,240,.9)}
+  /* the reference's heading is a high-contrast garalde, not the site's sans */
+  .board .title{left:37.78%;top:19.83%;
+    font-family:"Cormorant Garamond","Times New Roman",serif;font-weight:500;
+    font-size:6.417cqw;line-height:1;letter-spacing:-.005em;
+    background:linear-gradient(180deg,#fff 30%,#bdbdbd 75%,#8d8d8d 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent}
+  /* a zero-size marker on the baseline, so the fit can find it */
+  .board .title .bl{display:inline-block;width:0;height:0;overflow:hidden}
+
+  /* the full stop is the site's circular indicator, drawn rather than typed */
+  .board .tdot{left:62.81%;top:27.17%;width:1.351cqw;aspect-ratio:1;
+    border:.077cqw solid #d8d8d8;border-radius:50%;display:grid;place-items:center}
+  .board .tdot::after{content:"";width:.257cqw;aspect-ratio:1;border-radius:50%;
+    background:#eee}
+  .board .sub{left:50%;top:31.42%;transform:translateX(-50%);text-align:center;
+    font-size:.837cqw;line-height:1.54;font-weight:300;color:rgba(225,225,225,.72)}
+
+  /* the index down the left edge ------------------------------------------- */
+  .board .pg{letter-spacing:.3em;color:rgba(232,232,232,.6)}
+  .board .p1{left:2.96%;top:41.8%}
+  .board .p2{left:2.96%;top:52.08%}
+  .board .pline{left:3.41%;top:43.78%;width:1px;height:7.31%;
+    background:rgba(255,255,255,.2)}
+  .board .pline::after{content:"";position:absolute;inset:0 auto auto 0;
+    width:1px;height:60%;background:#fff}
+
+  /* the foot ---------------------------------------------------------------- */
+  .board .jp{left:2.9%;top:80.53%;font-family:"Noto Serif JP",serif;
+    font-weight:300;font-size:.965cqw;line-height:1.53;letter-spacing:.12em;
+    color:#eaeaea}
+  .board .bl{left:2.9%;top:85.47%;font-size:.611cqw}
+  .board .r4{left:2.96%;top:90.42%;width:1.67%}
+  .board .br{right:2.32%;top:77.57%;text-align:right;font-size:.547cqw;
+    line-height:1.88}
+  .board .r5{left:95.82%;top:85.08%;width:1.42%}
+
+  .board .foot{font-size:.611cqw}
+  .board .fl{left:2.9%;top:94.47%}
+  .board .fc{left:50%;top:92.69%;transform:translateX(-50%);letter-spacing:.55em}
+  .board .fr{right:2.57%;top:94.96%}
+
+  /* the tiles --------------------------------------------------------------- */
+  /* The hit areas are traced onto the quads the painting already contains, so
+     the highlight lands exactly on the tile under the pointer. */
+  .quads{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+  .quad{fill:transparent;stroke:transparent;stroke-width:1.5;cursor:default;
+    outline:none;transition:stroke .38s var(--ease), fill .38s var(--ease)}
+  .quad.on{stroke:rgba(255,255,255,.95);fill:rgba(255,255,255,.05);
+    filter:url(#tileGlow)}
+  .quad:focus-visible{stroke:rgba(255,255,255,.55)}
+
+  /* the mark and its name ride on top, leaning with their tile's perspective */
+  .tmark{position:absolute;pointer-events:none;display:flex;
+    flex-direction:column;align-items:center;gap:.71cqw}
+  .tmark i{font-size:1.931cqw;line-height:1;color:#efefef;
+    filter:grayscale(1) brightness(2.2);opacity:.82;
+    transition:opacity .38s var(--ease)}
+  .tmark span{font-size:.772cqw;letter-spacing:.01em;
+    color:rgba(225,225,225,.82);transition:color .38s var(--ease),
+    text-shadow .38s var(--ease)}
+  .tmark.on i{opacity:1}
+  .tmark.on span{color:#fff;text-shadow:0 0 1cqw rgba(255,255,255,.45)}
+
+  /* one bright point at the live tile's corner, the site's own indicator */
+  .tspark{position:absolute;width:.257cqw;aspect-ratio:1;border-radius:50%;
+    background:#fff;box-shadow:0 0 .39cqw .07cqw #fff;pointer-events:none;
+    opacity:0;transition:opacity .38s var(--ease)}
+  .tspark.on{opacity:1}
+
+  /* the arrival: the artboard settles rather than slides, because everything
+     inside it is one picture */
+  #stack .board{opacity:0;transform:scale(.985);
+    transition:opacity .9s var(--ease), transform 1.1s var(--ease)}
+  #stack.act .board{opacity:1;transform:none}
+  .board .rv{opacity:0;transition:opacity .6s var(--ease)}
+  .board .rv.in{opacity:1}
+
+  /* the narrow fallback grid ------------------------------------------------ */
+  .tgrid{display:none;grid-template-columns:repeat(2,1fr);gap:12px;
+    margin-top:26px}
+  .tgrid .tile{position:relative;aspect-ratio:1.5;border-radius:12px;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:10px;overflow:hidden;
+    background:linear-gradient(160deg,
+      color-mix(in srgb,var(--surface) 82%,transparent),
+      color-mix(in srgb,var(--bg) 86%,transparent));
+    border:1px solid var(--line);
+    box-shadow:inset 0 1px 0 color-mix(in srgb,var(--fg) 3%,transparent),
+               0 12px 34px -18px rgba(0,0,0,.9)}
+  .tgrid .tile i{font-size:24px;line-height:1;color:var(--fg);opacity:.55}
+  .tgrid .tile span{font-size:11px;color:var(--muted);letter-spacing:.3px}
+
+  @media (prefers-reduced-motion:reduce){
+    #stack .board,.board .rv{opacity:1;transform:none;transition:none}
+    .quad,.tmark i,.tmark span,.tspark{transition:none}
+  }

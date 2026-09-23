@@ -1,0 +1,427 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<meta name="theme-color" content="#0b0b0d"/>
+<title>Ganesh Tadigadapa</title>
+<meta name="description" content="Ganesh Tadigadapa — developer, designer, creator."/>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@200;300;400;500;700;800&family=Noto+Serif+JP:wght@200;300;500&display=swap" rel="stylesheet">
+<!-- devicon = real tech logos via CDN -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css">
+
+<script>
+  /* the page must always begin at the intro, never where you last were */
+  try{ if ('scrollRestoration' in history) history.scrollRestoration = 'manual'; }catch(e){}
+  /* runs before first paint so a stored light theme never flashes dark */
+  try{
+    var t = localStorage.getItem('theme');
+    if (t === 'light') document.documentElement.dataset.theme = 'light';
+  }catch(e){}
+</script>
+
+<!-- Stylesheets load in cascade order: tokens, then the global ground, then
+     each chapter in the order it is read, then the viewport rules last. -->
+<link rel="stylesheet" href="css/variables.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/intro.css">
+<link rel="stylesheet" href="css/hero.css">
+<link rel="stylesheet" href="css/navigation.css">
+<link rel="stylesheet" href="css/journey.css">
+<link rel="stylesheet" href="css/tech-stack.css">
+<link rel="stylesheet" href="css/projects.css">
+<link rel="stylesheet" href="css/photography.css">
+<link rel="stylesheet" href="css/contact.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<div class="grain"></div>
+<div class="vignette"></div>
+<div class="cur cur-ring" id="curRing"></div>
+<div class="cur cur-dot" id="curDot"></div>
+
+<button class="theme" id="theme" aria-label="Switch theme" title="Switch theme">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <mask id="moon">
+      <rect width="24" height="24" fill="#fff"/>
+      <circle class="bite" cx="12" cy="12" r="9" fill="#000"/>
+    </mask>
+    <circle class="disc" cx="12" cy="12" r="9" mask="url(#moon)"/>
+    <g class="rays">
+      <line x1="12" y1="1"  x2="12" y2="3"/>
+      <line x1="12" y1="21" x2="12" y2="23"/>
+      <line x1="1"  y1="12" x2="3"  y2="12"/>
+      <line x1="21" y1="12" x2="23" y2="12"/>
+      <line x1="4.2"  y1="4.2"  x2="5.6"  y2="5.6"/>
+      <line x1="18.4" y1="18.4" x2="19.8" y2="19.8"/>
+      <line x1="4.2"  y1="19.8" x2="5.6"  y2="18.4"/>
+      <line x1="18.4" y1="5.6"  x2="19.8" y2="4.2"/>
+    </g>
+  </svg>
+</button>
+<div class="bloom" id="bloom"></div>
+<div class="scrollbar"><i id="sprog"></i></div>
+
+<!-- ============ GATE (act two: intro -> gate -> site) ============ -->
+<div id="gate" role="img" aria-label="A torii gate standing in still water under moonlit fog">
+  <div class="scene">
+    <img class="lqip" alt="" aria-hidden="true" src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAASABIAAD/4QBMRXhpZgAATU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAHKADAAQAAAABAAAAEgAAAAD/wAARCAASABwDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9sAQwAMDAwMDAwUDAwUHRQUFB0nHR0dHScxJycnJycxOzExMTExMTs7Ozs7Ozs7R0dHR0dHU1NTU1NdXV1dXV1dXV1d/9sAQwEODw8YFhgoFhYoYUI2QmFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFhYWFh/90ABAAC/9oADAMBAAIRAxEAPwDi4xFJGXUnj07VrQW0ONzSKOM1ztrcQwzBgxH8jXUwajZgykLjdAVAB70xE01rBbIkk0ihXGRiuZk1Jw5ESDbnitK7lt2jiLAt8metY5lt8/KvFMD/0PLe1PjJAbB7UztTk+630oA1Lj7sR/6Zj+tZx61o3H3Yv+uY/mazj1piP//Z">
+    <img class="full" id="gateImg" alt="" aria-hidden="true" src="assets/gate.jpg">
+  </div>
+  <div class="gfog" id="gfog"></div>
+  <div class="gvig" id="gvig"></div>
+  <div class="portal" id="portal"></div>
+</div>
+<div id="spacer"></div>
+
+<!-- ============ PAGE (hidden until the gate opens) ============ -->
+<div id="page">
+
+<!-- the air of the whole journey, behind every chapter -->
+<div id="journey" aria-hidden="true">
+  <div class="air a1"></div>
+  <div class="air a2"></div>
+  <div class="air a3"></div>
+</div>
+
+
+<!-- ============ HERO ============ -->
+<section id="site" class="chapter" data-ch="1">
+  <div class="sky">
+    <div class="planet"></div>
+    <div class="terrain"></div>
+    <div class="mist"></div>
+  </div>
+
+  <div class="jp">無限</div><!-- mugen - limitless -->
+
+  <nav class="nav fx">
+    <span class="logo">GT</span><span class="hair"></span>
+    <span class="links">
+      <a class="on" href="#site">Home</a><a href="#work">Projects</a>
+      <a href="#stack">Stack</a><a href="#lens">Photos</a>
+    </span>
+  </nav>
+
+  <div class="badge fx"><b>01</b><span>Typographic Art</span></div>
+
+  <div class="rail rail-l fx">01<i></i>04</div>
+  <div class="rail rail-r fx">Code<br>Learn<br>Build<br>Create<i></i></div>
+
+  <div class="namewrap">
+    <h1><span class="nm n1">GANESH</span><span class="nm n2">TADIGADAPA</span></h1>
+    <div class="tick"><em></em><i></i></div>
+    <div class="sig">
+      <div class="rule"></div>
+      <div class="role fx">Developer · Designer · Creator</div>
+    </div>
+  </div>
+
+  <div class="dial fx" aria-hidden="true">
+    <svg class="rim" viewBox="0 0 100 100">
+      <defs><path id="dialpath" fill="none"
+        d="M50,50 m-36,0 a36,36 0 1,1 72,0 a36,36 0 1,1 -72,0"/></defs>
+      <text><textPath href="#dialpath" startOffset="0">Scroll Down · Scroll Down ·&#160;</textPath></text>
+    </svg>
+    <span class="arw">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+           stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 5v14M6 13l6 6 6-6"/>
+      </svg>
+    </span>
+  </div>
+
+  <p class="quote fx">A curious mind builds a bigger tomorrow.<i></i></p>
+
+  <div class="base">
+    <span class="end fx">Portfolio / 2026<i></i></span>
+    <span class="end fx"><i></i>CSE · Cloud · Full Stack</span>
+  </div>
+</section>
+
+<!-- ============ WORK ============ -->
+<section class="band chapter" id="work" data-ch="2">
+  <div class="mark">作</div><!-- saku - work, creation -->
+  <div class="wrap">
+    <div class="head">
+      <div class="idx rv">02 — Projects</div>
+      <h2 class="rv">Selected <b>Projects</b></h2>
+      <p class="rv">Real problems, real impact — where the engineering, the design and the
+        intent all meet.</p>
+    </div>
+
+    <div class="plist">
+      <article class="prow rv" aria-label="Splitly — AI Expense Manager">
+        <span class="pinfo">
+          <span class="pn">01</span>
+          <span class="pt">Splitly<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></span>
+          <span class="pkind">AI Expense Manager</span>
+          <span class="psub">Split bills effortlessly using OCR and an LLM. Turns receipts into shared expenses, and settles a group in as few transfers as possible.</span>
+          <span class="ptags"><span>React</span><span>Node.js</span><span>OCR</span><span>Groq</span><span>Firebase</span></span>
+          <a class="pgo" href="https://ai-split-66al.vercel.app/" target="_blank" rel="noopener">View Project<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+        </span>
+        <a class="pview" href="https://ai-split-66al.vercel.app/" target="_blank" rel="noopener" aria-label="Splitly — AI Expense Manager — open the live site">
+          <span class="pchrome"><em></em><em></em><em></em><b>ai-split-66al.vercel.app</b><u><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></u></span>
+          <span class="pframe">
+            <span class="ghost">[ preview ]</span>
+            <img alt="" loading="lazy" decoding="async" src="assets/projects/splitly.jpg">
+            <span class="plive"><s></s>Open live site</span>
+          </span>
+        </a>
+      </article>
+      <article class="prow rv" aria-label="Zenkai — Opportunity Discovery Engine">
+        <span class="pinfo">
+          <span class="pn">02</span>
+          <span class="pt">Zenkai<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></span>
+          <span class="pkind">Opportunity Discovery Engine</span>
+          <span class="psub">Internships, hackathons, certifications, scholarships and student benefits gathered from across the web &mdash; every record carrying its official source.</span>
+          <span class="ptags"><span>Next.js</span><span>TypeScript</span><span>Postgres</span><span>Vercel</span></span>
+          <a class="pgo" href="https://zenkai-iota.vercel.app/" target="_blank" rel="noopener">View Project<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+        </span>
+        <a class="pview" href="https://zenkai-iota.vercel.app/" target="_blank" rel="noopener" aria-label="Zenkai — Opportunity Discovery Engine — open the live site">
+          <span class="pchrome"><em></em><em></em><em></em><b>zenkai-iota.vercel.app</b><u><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></u></span>
+          <span class="pframe">
+            <span class="ghost">[ preview ]</span>
+            <img alt="" loading="lazy" decoding="async" src="assets/projects/zenkai.jpg">
+            <span class="plive"><s></s>Open live site</span>
+          </span>
+        </a>
+      </article>
+      <article class="prow rv" aria-label="Thread Visualizer — Multithreading Simulator">
+        <span class="pinfo">
+          <span class="pn">03</span>
+          <span class="pt">Thread Visualizer<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></span>
+          <span class="pkind">Multithreading Simulator</span>
+          <span class="psub">Visualise how threads run under different scheduling algorithms, with real-time state transitions, cores and queues.</span>
+          <span class="ptags"><span>JavaScript</span><span>HTML5</span><span>CSS3</span><span>Semaphores</span></span>
+          <a class="pgo" href="https://threadvisualize.netlify.app/" target="_blank" rel="noopener">View Project<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+        </span>
+        <a class="pview" href="https://threadvisualize.netlify.app/" target="_blank" rel="noopener" aria-label="Thread Visualizer — Multithreading Simulator — open the live site">
+          <span class="pchrome"><em></em><em></em><em></em><b>threadvisualize.netlify.app</b><u><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></u></span>
+          <span class="pframe">
+            <span class="ghost">[ preview ]</span>
+            <img alt="" loading="lazy" decoding="async" src="assets/projects/threads.jpg">
+            <span class="plive"><s></s>Open live site</span>
+          </span>
+        </a>
+      </article>
+      <article class="prow rv" aria-label="LPU Nexus — Campus Super-App">
+        <span class="pinfo">
+          <span class="pn">04</span>
+          <span class="pt">LPU Nexus<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></span>
+          <span class="pkind">Campus Super-App</span>
+          <span class="psub">One platform for academic tools, notices, campus navigation, events and more &mdash; built to simplify student life.</span>
+          <span class="ptags"><span>HTML5</span><span>CSS3</span><span>JavaScript</span><span>Netlify</span></span>
+          <a class="pgo" href="https://lpunexus.netlify.app/" target="_blank" rel="noopener">View Project<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+        </span>
+        <a class="pview" href="https://lpunexus.netlify.app/" target="_blank" rel="noopener" aria-label="LPU Nexus — Campus Super-App — open the live site">
+          <span class="pchrome"><em></em><em></em><em></em><b>lpunexus.netlify.app</b><u><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></u></span>
+          <span class="pframe">
+            <span class="ghost">[ preview ]</span>
+            <img alt="" loading="lazy" decoding="async" src="assets/projects/nexus.jpg">
+            <span class="plive"><s></s>Open live site</span>
+          </span>
+        </a>
+      </article>
+      <article class="prow rv" aria-label="RetinaX — Explainable AI for Diabetic Retinopathy">
+        <span class="pinfo">
+          <span class="pn">05</span>
+          <span class="pt">RetinaX<i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></i></span>
+          <span class="pkind">Explainable AI for Diabetic Retinopathy</span>
+          <span class="psub">An end-to-end screening pipeline with explainability visualisations (Grad-CAM) and ICDR-aligned reports to support clinical insight.</span>
+          <span class="ptags"><span>Python</span><span>TensorFlow</span><span>FastAPI</span><span>React</span></span>
+          <a class="pgo" href="#work">Case study<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12h15M13 6l6 6-6 6"/></svg></a>
+        </span>
+        <a class="pview" href="#work" aria-label="RetinaX — Explainable AI for Diabetic Retinopathy — open the live site">
+          <span class="pchrome"><em></em><em></em><em></em><b>retinax · case study</b><u><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg></u></span>
+          <span class="pframe">
+            <span class="ghost">[ preview ]</span>
+            <img alt="" loading="lazy" decoding="async" src="assets/projects/retinopathy.jpg">
+            <span class="plive"><s></s>Case study</span>
+          </span>
+        </a>
+      </article>
+    </div>
+
+    <div class="pfoot rv">
+      <span>More coming soon</span>
+      <span class="trail">Ideas<i></i>Build<i></i>Impact</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TECH STACK ============ -->
+<section class="band chapter" id="stack" data-ch="3">
+  <div class="wrap">
+
+    <!-- The environment is a painting, and the eighteen tiles are painted into
+         its floor in perspective. So this is an artboard, not a flowed layout:
+         everything is placed as a percentage of a fixed 1554x1012 frame, and
+         the whole thing scales with the container. -->
+    <div class="board" id="stackBoard">
+      <img class="plate" src="assets/stack-plate.svg" alt="" decoding="async"
+           fetchpriority="low" width="1554" height="1012">
+
+      <span class="bi idx rv">03</span>
+      <span class="bi dash1 rv">—</span>
+      <span class="bi lbl rv">Tech Stack</span>
+      <i class="bi rule r1 rv"></i>
+
+      <p class="bi col tl rv">Turn<br>Ideas<br>Into<br>Impact</p>
+      <i class="bi rule r2 rv"></i>
+
+      <p class="bi col tr dim rv">Same tools.<br>Different<br>possibilities.</p>
+      <i class="bi rule r3 rv"></i>
+
+      <div class="bi ji rv" lang="ja" aria-hidden="true">技<br>術</div>
+      <p class="bi kick rv">Tools that build a better tomorrow</p>
+      <h2 class="bi title rv" id="stackTitle">My Stack<span class="bl" aria-hidden="true"></span></h2>
+      <span class="bi tdot rv" aria-hidden="true"></span>
+      <p class="bi sub rv">A blend of languages, frameworks and tools<br>
+        I use to build real-world applications.</p>
+
+      <span class="bi pg p1 rv" aria-hidden="true">03</span>
+      <i class="bi pline rv" aria-hidden="true"></i>
+      <span class="bi pg p2 rv" aria-hidden="true">04</span>
+
+      <p class="bi jp rv" lang="ja" aria-hidden="true">より良い<br>明日へ</p>
+      <p class="bi col bl dim rv">A better<br>tomorrow</p>
+      <i class="bi rule r4 rv"></i>
+
+      <p class="bi col br dim rv">Same<br>curiosity.<br>Bigger<br>horizons.</p>
+      <i class="bi rule r5 rv"></i>
+
+      <span class="bi foot fl rv">Ganesh Tadigadapa</span>
+      <span class="bi foot fc rv">Code &nbsp;·&nbsp; Learn &nbsp;·&nbsp; Build &nbsp;·&nbsp; Repeat</span>
+      <span class="bi foot fr rv">CSE &nbsp;·&nbsp; Cloud &nbsp;·&nbsp; Full Stack</span>
+
+      <!-- the hit areas, traced onto the tiles the painting already contains -->
+      <svg class="quads" id="stackQuads" viewBox="0 0 1554 1012" aria-hidden="true">
+        <defs>
+          <filter id="tileGlow" x="-25%" y="-25%" width="150%" height="150%">
+            <feGaussianBlur stdDeviation="3" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+      </svg>
+    </div>
+
+    <!-- Below the artboard's width the painted tiles are too small to read, so
+         the same eighteen technologies are listed as an ordinary grid. -->
+    <div class="tgrid" id="stackGrid"></div>
+  </div>
+</section>
+
+<!-- ============ 04 — OBSERVE · CONNECT ============ -->
+<!-- One chapter, two movements: the photographs are looked at, then the page
+     turns to the reader. They share a band, a watermark and a number. -->
+<section class="band chapter" id="close" data-ch="4">
+  <div class="mark">光</div><!-- hikari - light -->
+  <div class="wrap">
+    <div class="mv" id="lens">
+      <div class="lenshead">
+      <div class="head" style="margin-bottom:0">
+        <div class="idx rv">04 — Photography</div>
+        <h2 class="rv">Through My <b>Lens<em>.</em></b></h2>
+        <p class="rv" style="margin-top:14px">Small moments. Different perspectives.</p>
+      </div>
+      <span class="note rv"><i></i><span>Same world.<br>Different perspectives.</span></span>
+    </div>
+
+    <div class="lensrail">
+      <div class="lstrip" id="lensRail"></div>
+    </div>
+
+    <div class="lensfoot">
+      <span class="meta" id="lensCount">01 / 07</span>
+      <div class="lensbar"><i id="lensProg"></i></div>
+      <div class="lensnav">
+        <button class="rnav" id="lensPrev" aria-label="Previous photographs">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+               stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+        </button>
+        <button class="rnav" id="lensNext" aria-label="Next photographs">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+               stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+    </div>
+
+    <div class="mv" id="connect">
+      <div class="connect">
+      <div class="head rv">
+        <div class="idx">Let&rsquo;s Connect</div>
+        <h2>Let&rsquo;s Build Something <b>Great<em>.</em></b></h2>
+        <p style="margin-top:14px">Open to opportunities, collaborations,
+          or a good conversation about tech.</p>
+      </div>
+
+      <div class="slinks rv">
+        <a href="mailto:ganeshtadigadapa1@gmail.com"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="2.5"/><path d="m3 7 9 6 9-6"/></svg></i><span>Email</span><svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        <a href="#"><i><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.48 2 2 6.58 2 12.25c0 4.53 2.87 8.37 6.84 9.73.5.1.68-.22.68-.49l-.01-1.9c-2.78.62-3.37-1.21-3.37-1.21-.46-1.18-1.11-1.5-1.11-1.5-.91-.64.07-.63.07-.63 1 .07 1.53 1.06 1.53 1.06.89 1.57 2.34 1.12 2.91.86.09-.66.35-1.12.63-1.38-2.22-.26-4.56-1.14-4.56-5.06 0-1.12.39-2.03 1.03-2.75-.1-.26-.45-1.3.1-2.71 0 0 .84-.28 2.75 1.05a9.3 9.3 0 0 1 5 0c1.91-1.33 2.75-1.05 2.75-1.05.55 1.41.2 2.45.1 2.71.64.72 1.03 1.63 1.03 2.75 0 3.93-2.34 4.79-4.57 5.05.36.32.68.94.68 1.9l-.01 2.82c0 .27.18.6.69.49A10.07 10.07 0 0 0 22 12.25C22 6.58 17.52 2 12 2Z"/></svg></i><span>GitHub</span><svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+        <a href="#"><i><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm7 0h3.8v1.65h.05c.53-.95 1.83-1.95 3.77-1.95 4.03 0 4.78 2.53 4.78 5.82V21h-4v-5.6c0-1.34-.03-3.06-1.9-3.06-1.9 0-2.2 1.45-2.2 2.96V21h-4V9Z"/></svg></i><span>LinkedIn</span><svg class="go" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17 17 7M8 7h9v9"/></svg></a>
+      </div>
+
+      <div class="sign rv"><em>また、どこかで。</em>Until next time</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>© 2026 Ganesh Tadigadapa</span>
+  <nav>
+    <a href="#site">Top</a>
+    <a href="#work">Work</a>
+    <a href="#stack">Stack</a>
+    <a href="#lens">Lens</a>
+    <a href="#connect">Connect</a>
+  </nav>
+  <span>IND · 12.97°N</span>
+</footer>
+
+</div><!-- /#page -->
+
+<!-- the chapter mark: it counts the journey, so it lives outside the chapters -->
+<div class="chapmark" aria-hidden="true">
+  <div class="name"><span>Enter<br>Explore<br>Build<br>Observe · Connect</span></div>
+  <div class="r"></div>
+  <div class="n"><span class="in" id="chNum">01</span></div>
+</div>
+
+
+<!-- ============ INTRO ============ -->
+<div id="intro">
+  <span class="tag tl">起動 / booting</span>
+  <span class="tag tr" id="tagState">assets</span>
+  <span class="tag bl">IND · 12.97°N</span>
+  <span class="tag br">2026</span>
+
+  <div class="inner">
+    <div class="word">
+      <div class="kanji" id="kanji"></div>
+      <div class="meaning" id="meaning"></div>
+    </div>
+
+    <div class="counter">
+      <span id="num">0</span><span class="pct">%</span>
+    </div>
+
+    <div class="barwrap">
+      <div class="bar"><div class="fill" id="fill"></div></div>
+      <div class="label">Loading Experience</div>
+    </div>
+  </div>
+
+  <button class="skip" id="skip"></button>
+</div>
+
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
+

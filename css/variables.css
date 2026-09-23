@@ -1,0 +1,36 @@
+/* Design tokens. Every colour, rule and motion curve the site uses,
+   in both themes. Nothing here paints anything by itself. */
+
+  :root{
+    /* motion signature is theme-independent */
+    --ease:cubic-bezier(.16,1,.3,1);      /* expo-out: the whole site's signature */
+    --ease-io:cubic-bezier(.76,0,.24,1);  /* expo-in-out: for wipes */
+
+    /* ---- dark: the default, and what the intro was designed in ---- */
+    --bg:#0b0b0d;
+    --fg:#f4f4f2;
+    --muted:#6d6d73;
+    --dim:#37373d;
+    --track:#1c1c20;
+    --surface:#0f0f12;
+    --line:#1f1f24;
+    --mark:#131317;                       /* watermark kanji */
+    --grain:.045;
+    --vig:radial-gradient(125% 125% at 50% 45%, rgba(255,255,255,.028), rgba(0,0,0,.62) 92%);
+    --glow:rgba(255,255,255,.22);
+  }
+
+  /* ---- light: paper, not glare — same composition, inverted weight ---- */
+  :root[data-theme="light"]{
+    --bg:#ffffff;
+    --fg:#0e0e11;
+    --muted:#6b6b76;
+    --dim:#9a9aa4;
+    --track:#ececef;
+    --surface:#f6f6f8;
+    --line:#e4e4e9;
+    --mark:#f2f2f5;
+    --grain:.02;
+    --vig:radial-gradient(125% 125% at 50% 45%, rgba(255,255,255,.9), rgba(140,140,150,.14) 96%);
+    --glow:rgba(0,0,0,.16);
+  }

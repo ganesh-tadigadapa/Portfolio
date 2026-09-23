@@ -1,0 +1,84 @@
+/* 04 — OBSERVE (first movement). The horizontal film rail. */
+
+  /* ---------- lens: horizontal film rail ---------- */
+  /* the strip below is centred, so the type that introduces it is too */
+  .lenshead{display:flex;flex-direction:column;align-items:center;text-align:center;gap:0}
+  .lenshead .head{display:flex;flex-direction:column;align-items:center}
+  .lenshead .idx{justify-content:center}
+  .lenshead .idx::before{content:"";height:1px;flex:1;max-width:120px;background:var(--line)}
+  .lenshead .head p{max-width:46ch}
+  .lenshead .note{margin-top:18px;font-size:9px;letter-spacing:4px;
+    text-transform:uppercase;color:var(--dim);line-height:1.9;
+    display:flex;flex-direction:column;align-items:center;gap:12px}
+  .lenshead .note i{display:block;width:44px;height:1px;background:var(--line)}
+  .lenshead h2 em{font-style:normal;color:var(--accent)}
+
+  /* the strip sits in a relative shell so its controls can be placed around it.
+     It is deliberately narrower than the measure — the photographs are an
+     aside, so they sit centred with air on both sides and scroll in place. */
+  .lensrail{position:relative;margin:34px auto 0;max-width:min(1040px,100%)}
+
+  /* `safe center` keeps the set centred while it fits and falls back to a
+     normal left-anchored scroll once it overflows, so nothing is cut off */
+  .lstrip{display:flex;gap:12px;justify-content:safe center;
+    overflow-x:auto;overflow-y:hidden;
+    scroll-snap-type:x proximity;scroll-behavior:smooth;
+    padding:4px 2px 8px;scrollbar-width:none;-ms-overflow-style:none}
+  .lstrip::-webkit-scrollbar{display:none}
+
+  /* one frame height for every photograph; only the width follows the
+     orientation, so a portrait and a landscape still read as one set */
+  .shot{position:relative;flex:0 0 auto;margin:0;scroll-snap-align:center;
+    height:clamp(168px,15vw,196px);aspect-ratio:3/4;
+    border-radius:2px;overflow:hidden;background:var(--surface);cursor:pointer;
+    transition:transform .6s var(--ease), box-shadow .6s var(--ease),
+               aspect-ratio .5s var(--ease)}
+  .shot.wide{aspect-ratio:4/3}
+  .shot img{width:100%;height:100%;display:block;object-fit:cover;
+    transition:transform 1s var(--ease), opacity .6s var(--ease)}
+  .shot img[data-missing]{opacity:0}
+
+  /* the photographs are the point, so the resting state is the photograph
+     itself — shade appears only under a caption that is being read */
+  .shot::after{content:"";position:absolute;inset:0;pointer-events:none;
+    background:linear-gradient(180deg,transparent 62%,rgba(0,0,0,.72) 100%);
+    opacity:.8;transition:opacity .5s var(--ease)}
+  .shot:hover,.shot:focus-visible{outline:none;transform:translateY(-5px);
+    box-shadow:0 22px 44px -24px rgba(0,0,0,.85)}
+  .shot:hover::after,.shot:focus-visible::after{opacity:1}
+  .shot:hover img,.shot:focus-visible img{transform:scale(1.04)}
+
+  .shot .cap{position:absolute;left:11px;right:11px;bottom:9px;pointer-events:none;
+    display:flex;flex-direction:column;gap:3px;
+    opacity:1;transform:none;
+    transition:transform .45s var(--ease)}
+  .shot:hover .cap,.shot:focus-visible .cap{transform:translateY(-2px)}
+  .shot .cap b{font-size:8px;letter-spacing:2.6px;color:rgba(255,255,255,.45);
+    font-weight:400}
+  .shot .cap span{font-size:10.5px;font-weight:300;letter-spacing:.2px;
+    line-height:1.35;color:rgba(255,255,255,.94);
+    text-shadow:0 1px 10px rgba(0,0,0,.6)}
+  .shot .ghost{position:absolute;inset:0;display:grid;place-items:center;
+    font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--dim);
+    font-style:italic;pointer-events:none;transition:opacity .4s var(--ease)}
+  .shot.loaded .ghost{opacity:0}
+
+  /* the controls live under the strip beside the counter: nothing floats over
+     a photograph, so no frame is ever half-covered by its own interface */
+  .lensfoot{display:flex;align-items:center;gap:18px;margin:18px auto 0;
+    max-width:min(1040px,100%)}
+  .lensbar{position:relative;flex:1;height:1px;background:var(--line);overflow:hidden}
+  .lensbar i{position:absolute;left:0;top:0;height:1px;width:16%;background:var(--fg)}
+  .lensfoot .meta{font-size:9px;letter-spacing:4px;text-transform:uppercase;
+    color:var(--dim);font-variant-numeric:tabular-nums;white-space:nowrap}
+  .lensnav{display:flex;gap:8px}
+  .rnav{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;
+    background:transparent;border:1px solid var(--line);color:var(--muted);cursor:pointer;
+    transition:border-color .35s var(--ease), color .35s var(--ease), opacity .35s var(--ease)}
+  .rnav:hover{border-color:var(--dim);color:var(--fg)}
+  .rnav[disabled]{opacity:.25;pointer-events:none}
+  .rnav svg{width:13px;height:13px}
+
+  /* when every frame already fits, the scroll furniture is noise — the row
+     keeps only its count */
+  .lensfoot.still .lensbar,.lensfoot.still .lensnav{display:none}

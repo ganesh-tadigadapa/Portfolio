@@ -1,0 +1,50 @@
+/* 04 — CONNECT (second movement) and the footer that closes the page. */
+
+  /* ---------- connect: compact contact row ---------- */
+  /* the two sections read as one closing beat, so the seam between them is
+     tighter than the gap between the bands above */
+  #lens{padding-bottom:56px}
+  #connect{padding-top:0;padding-bottom:88px}
+  #connect .head h2{font-size:clamp(28px,4.2vw,50px)}
+  .connect{display:flex;flex-wrap:wrap;align-items:flex-end;
+    justify-content:space-between;gap:34px}
+  .connect .head{margin-bottom:0;max-width:460px}
+  /* the same pill the project panels use for their action, so the page closes
+     in the language it has been speaking the whole way down */
+  .slinks{display:flex;flex-wrap:wrap;align-items:center;gap:10px}
+  .slinks a{position:relative;display:inline-flex;align-items:center;gap:10px;
+    padding:11px 18px;border-radius:999px;border:1px solid var(--line);
+    background:color-mix(in srgb,var(--fg) 2%,transparent);
+    text-decoration:none;color:var(--muted);
+    font-size:12.5px;letter-spacing:.4px;overflow:hidden;isolation:isolate;
+    transition:color .3s var(--ease), border-color .3s var(--ease),
+               transform .3s var(--ease)}
+  /* the fill sweeps in from the left, exactly as View Project does */
+  .slinks a::before{content:"";position:absolute;inset:0;z-index:-1;
+    background:color-mix(in srgb,var(--fg) 7%,transparent);
+    transform:scaleX(0);transform-origin:0 50%;
+    transition:transform .35s var(--ease)}
+  .slinks a:hover{color:var(--fg);border-color:var(--dim);transform:translateY(-2px)}
+  .slinks a:hover::before{transform:scaleX(1)}
+  .slinks a i{display:grid;place-items:center;opacity:.7;
+    transition:opacity .3s var(--ease)}
+  .slinks a:hover i{opacity:1}
+  .slinks a i svg{width:15px;height:15px;display:block}
+  .slinks a .go{width:12px;height:12px;opacity:.3;margin-left:2px;
+    transition:opacity .3s var(--ease), transform .3s var(--ease)}
+  .slinks a:hover .go{opacity:.75;transform:translate(2px,-2px)}
+
+  .connect .sign{text-align:right;font-size:9px;letter-spacing:4px;
+    text-transform:uppercase;color:var(--dim);line-height:2.2}
+  .connect .sign em{display:block;font-style:normal;font-family:"Noto Serif JP",serif;
+    font-size:13px;letter-spacing:2px;text-transform:none;color:var(--muted)}
+
+
+  /* ---------- footer ---------- */
+  footer{position:relative;border-top:1px solid var(--line);
+    padding:60px 30px;display:flex;flex-wrap:wrap;gap:20px;
+    align-items:center;justify-content:space-between;
+    font-size:9px;letter-spacing:4px;text-transform:uppercase;color:var(--dim)}
+  footer a{color:var(--muted);text-decoration:none;transition:color .3s ease}
+  footer a:hover{color:var(--fg)}
+  footer nav{display:flex;gap:26px}
