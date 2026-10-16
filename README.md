@@ -53,7 +53,7 @@ Five project cards, each with a browser-style preview and tags:
 | 02 | [Zenkai](https://zenkai-iota.vercel.app/) | Opportunity discovery engine for students | Next.js, TypeScript, Postgres, Vercel |
 | 03 | [Thread Visualizer](https://threadvisualize.netlify.app/) | Multithreading and scheduling simulator | JavaScript, HTML5, CSS3, Semaphores |
 | 04 | [LPU Nexus](https://lpunexus.netlify.app/) | Campus super-app for student life | HTML5, CSS3, JavaScript, Netlify |
-| 05 | RetinaX | Explainable AI for diabetic retinopathy (case study) | Python, TensorFlow, FastAPI, React |
+| 05 | [RetinaX](https://github.com/ganesh-tadigadapa/retinaX) | Explainable AI for diabetic retinopathy (code on GitHub) | Python, TensorFlow, FastAPI, React |
 
 - A soft sheen follows your pointer across each card.
 - Screenshots only appear once they have loaded, so a missing image never shows as a broken frame.
