@@ -50,7 +50,7 @@ Five project cards, each with a browser-style preview and tags:
 | # | Project | What it is | Built with |
 |---|---------|------------|------------|
 | 01 | [Splitly](https://ai-split-66al.vercel.app/) | AI expense manager — split bills using OCR and an LLM | React, Node.js, OCR, Groq, Firebase |
-| 02 | [Zenkai](https://zenkai-iota.vercel.app/) | Opportunity discovery engine for students | Next.js, TypeScript, Postgres, Vercel |
+| 02 | [Zenkai](https://getzenkai.vercel.app/) | Opportunity discovery engine for students | Next.js, TypeScript, Postgres, Vercel |
 | 03 | [Thread Visualizer](https://threadvisualize.netlify.app/) | Multithreading and scheduling simulator | JavaScript, HTML5, CSS3, Semaphores |
 | 04 | [LPU Nexus](https://lpunexus.netlify.app/) | Campus super-app for student life | HTML5, CSS3, JavaScript, Netlify |
 | 05 | [RetinaX](https://github.com/ganesh-tadigadapa/retinaX) | Explainable AI for diabetic retinopathy (code on GitHub) | Python, TensorFlow, FastAPI, React |
